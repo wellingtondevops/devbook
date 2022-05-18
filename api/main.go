@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/src/config"
 	"api/src/router"
 	"fmt"
 	"log"
@@ -9,8 +10,10 @@ import (
 
 func main() {
 
+	config.Carregar()
+
 	r := router.Gerar()
-	fmt.Println("API listen in port 5003")
-	log.Fatal(http.ListenAndServe(":5003", r))
+	fmt.Printf("API DEVBOOK LISTEN ON PORT: %d", config.Porta)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
 
 }
